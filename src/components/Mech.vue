@@ -1,8 +1,12 @@
-<template lang="pug">
-  #mech
-    .mech-image
+<template lang='pug'>
+  .mech
+    img(
+      :src='imgSource'
+      height='312'
+      width='225'
+    )
     life-display(
-      :maxLife='maxLife',
+      :maxLife='maxLife'
       :currentLife='currentLife'
     )
 </template>
@@ -24,8 +28,14 @@ export default {
       required: true
     },
     maxLife: {
-      type: Number,
+      type: String,
       required: true
+    }
+  },
+
+  computed: {
+    imgSource() {
+      return `/img/mechs/${this.image}`
     }
   },
 
@@ -37,8 +47,11 @@ export default {
 }
 </script>
 
-<style scoped>
-#mech {
-
+<style lang='scss'>
+.mech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 225px;
 }
 </style>
