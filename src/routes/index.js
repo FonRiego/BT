@@ -1,13 +1,13 @@
 // constants
 import { VIEWS_NAMES } from '../constants/viewsNames'
-import Home from '../views/Home'
+import Lances from '../views/Lances'
 import Battle from '../views/Battle'
 
 const routes = [
   {
-    name: VIEWS_NAMES.HOME_VIEW,
+    name: VIEWS_NAMES.LANCES_VIEW,
     path: '/',
-    component: Home
+    component: Lances
   },
   {
     name: VIEWS_NAMES.BATTLE_VIEW,
