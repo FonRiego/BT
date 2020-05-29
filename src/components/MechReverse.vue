@@ -1,28 +1,27 @@
 <template lang='pug'>
-  .mech
-    img(
-      :src='mech.imageSource'
-      height='312'
-      width='225'
+  .mech-reverse
+    dice-pack(
+      :baseDice='mech.baseDice'
+      :optionalDice='mech.optionalDice'
     )
     life-display(
       :maxStructure='mech.maxStructure'
       :currentStructure='currentStructure'
     )
-    dice-pack(
-      :baseDice='mech.baseDice'
-      :optionalDice='mech.optionalDice'
+    img(
+      :src='mech.imageSource'
+      height='312'
+      width='225'
     )
-
 </template>
 
 <script>
 // components
-import LifeDisplay from './LifeDisplay'
 import DicePack from './DicePack'
+import LifeDisplay from './LifeDisplay'
 
 export default {
-  name: 'Mech',
+  name: 'MechReverse',
   data() {
     return {
       currentStructure: null
@@ -45,13 +44,13 @@ export default {
 </script>
 
 <style lang='scss'>
-.mech {
+.mech-reverse {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 225px;
   .life-display {
-    margin-top: 8px;
+    margin-bottom: 8px;
   }
 }
 </style>

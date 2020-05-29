@@ -1,0 +1,7 @@
+export const FAULTY_EJECTION = 'FAULTY_EJECTION'
+export const URBAN_COMBAT = 'URBAN_COMBAT'
+
+export const TRAITS = {
+  FAULTY_EJECTION,
+  URBAN_COMBAT
+}

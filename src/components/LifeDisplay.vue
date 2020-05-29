@@ -1,6 +1,6 @@
 <template lang='pug'>
   .life-display
-    span {{ currentLife }} / {{ maxLife }}
+    span {{ currentStructure }} / {{ maxStructure }}
 </template>
 
 <script>
@@ -8,12 +8,12 @@ export default {
   name: 'LifeDisplay',
 
   props: {
-    currentLife: {
-      type: String,
+    currentStructure: {
+      type: Number,
       required: true
     },
-    maxLife: {
-      type: String,
+    maxStructure: {
+      type: Number,
       required: true
     }
   }

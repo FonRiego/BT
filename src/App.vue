@@ -9,6 +9,6 @@
 
   #app {
     min-height: 100vh;
-    padding: 1rem;
+    overflow-x: hidden;
   }
 </style>
