@@ -7,9 +7,9 @@
 
 const getDefaultState = () => ({
   lance1Name: null,
-  lance2Name: null
-  // lance1: [],
-  // lance2: []
+  lance2Name: null,
+  lance1: [],
+  lance2: []
 })
 
 export default getDefaultState
