@@ -1,11 +1,11 @@
 <template lang='pug'>
   .dice(
     :class='classArray'
-    @click='diceClick(dice)'
+    @click='diceClick'
   )
     img(
-      v-if='this.rolledFace'
-      :src='this.rolledFace.image'
+      v-if='dataDice.rolledFace'
+      :src='dataDice.rolledFace.image'
       height='36'
       width='36'
     )
@@ -19,6 +19,9 @@ import {
   DICE_ROLLING
 } from '../constants/battlePhases'
 
+// utils
+import { cloneDeep } from 'lodash'
+
 // vuex
 import { mapState } from 'vuex'
 
@@ -27,15 +30,17 @@ export default {
 
   data() {
     return {
-      rolledFace: null,
-      willBeRolled: true,
-      willBeCooled: false
+      dataDice: cloneDeep(this.dice)
     }
   },
 
   props: {
     dice: {
       type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
       required: true
     },
     isOptionalDice: {
@@ -54,11 +59,11 @@ export default {
     }),
     classArray() {
       return [
-        this.dice.color,
+        this.dataDice.color,
         {
           'disabled': !this.active,
-          'discarded': !this.willBeRolled,
-          'cooled': this.willBeCooled
+          'discarded': !this.dataDice.willBeRolled,
+          'cooled': this.dataDice.willBeCooled
         }
       ]
     }
@@ -66,16 +71,15 @@ export default {
 
   methods: {
     toogleWillBeRolled() {
-      this.willBeRolled ? this.willBeRolled = false : this.willBeRolled = true
+      this.dataDice.willBeRolled ? this.dataDice.willBeRolled = false : this.dataDice.willBeRolled = true
     },
 
     toogleWillBeCooled() {
-      this.willBeCooled ? this.willBeCooled = false : this.willBeCooled = true
+      if (this.dataDice.type === 'COOLING') return
+      this.dataDice.willBeCooled ? this.dataDice.willBeCooled = false : this.dataDice.willBeCooled = true
     },
 
-    diceClick(dice) {
-      console.log(dice, this.rolledFace, this.isOptionalDice)
-
+    diceClick() {
       if (this.statePhase === DICE_SELECTION) {
         if (this.isOptionalDice) {
           this.toogleWillBeRolled()
@@ -85,16 +89,23 @@ export default {
       }
 
       if (this.statePhase === DICE_ROLLING) {
-        if (!this.rolledFace) {
+        if (!this.willBeRolled) return
+        if (this.willBeCooled) {
+          this.transformCooledDice()
+        } else if (!this.rolledFace) {
           this.rollDice()
         }
       }      
       // this.$emit('rolledFace', this.rolledFace)
     },
 
+    transformCooledDice() {
+      this.$emit('transformToCooling', this.index)
+    },
+
     rollDice() {
       const faceIndex = Math.round(Math.random()*5)
-      this.rolledFace = this.dice.faces[faceIndex]
+      this.rolledFace = this.dataDice.faces[faceIndex]
       console.log(this.rolledFace)
     }
   }

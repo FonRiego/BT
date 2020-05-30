@@ -2,6 +2,8 @@ export default {
   type: 'COMMAND',
   color: 'white',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/command/1.png',

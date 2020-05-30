@@ -19,7 +19,9 @@ export const LCT_1V = {
   maxStructure: 6,
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
   optionalDice: [],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const WSP_1A = {
@@ -31,7 +33,9 @@ export const WSP_1A = {
   maxStructure: 5,
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
   optionalDice: [],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const STG_3R = {
@@ -43,7 +47,9 @@ export const STG_3R = {
   maxStructure: 5,
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
   optionalDice: [],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const COM_2D = {
@@ -55,7 +61,9 @@ export const COM_2D = {
   maxStructure: 7,
   baseDice: [SOFT_ATTACK, DODGE],
   optionalDice: [SOFT_ATTACK],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const JVN_10N = {
@@ -67,7 +75,9 @@ export const JVN_10N = {
   maxStructure: 8,
   baseDice: [DODGE, DODGE],
   optionalDice: [HARD_ATTACK],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const SDR_5V = {
@@ -79,7 +89,9 @@ export const SDR_5V = {
   maxStructure: 7,
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
   optionalDice: [SOFT_ATTACK],
-  traits: [TRAITS.FAULTY_EJECTION]
+  traits: [TRAITS.FAULTY_EJECTION],
+  lance: null,
+  index: null
 }
 
 export const UM_R60 = {
@@ -91,7 +103,9 @@ export const UM_R60 = {
   maxStructure: 10,
   baseDice: [HARD_ATTACK],
   optionalDice: [],
-  traits: [TRAITS.URBAN_COMBAT]
+  traits: [TRAITS.URBAN_COMBAT],
+  lance: null,
+  index: null
 }
 
 export const VLK_QA = {
@@ -103,7 +117,9 @@ export const VLK_QA = {
   maxStructure: 10,
   baseDice: [SOFT_ATTACK, SOFT_ATTACK, DODGE],
   optionalDice: [],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const FS9_H = {
@@ -115,7 +131,9 @@ export const FS9_H = {
   maxStructure: 10,
   baseDice: [HEAT_ATTACK, HEAT_ATTACK],
   optionalDice: [SOFT_ATTACK, DODGE],
-  traits: [TRAITS.URBAN_COMBAT]
+  traits: [TRAITS.URBAN_COMBAT],
+  lance: null,
+  index: null
 }
 
 export const JR7_D = {
@@ -126,7 +144,9 @@ export const JR7_D = {
   maxStructure: 8,
   baseDice: [SOFT_ATTACK, DODGE],
   optionalDice: [DODGE, HARD_ATTACK],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const OTT_7J = {
@@ -138,7 +158,9 @@ export const OTT_7J = {
   maxStructure: 9,
   baseDice: [SOFT_ATTACK, DODGE],
   optionalDice: [DODGE],
-  traits: []
+  traits: [],
+  lance: null,
+  index: null
 }
 
 export const PNT_9R = {
@@ -150,7 +172,9 @@ export const PNT_9R = {
   maxStructure: 11,
   baseDice: [HARD_ATTACK, DODGE],
   optionalDice: [],
-  traits: [TRAITS.URBAN_COMBAT]
+  traits: [TRAITS.URBAN_COMBAT],
+  lance: null,
+  index: null
 }
 
 

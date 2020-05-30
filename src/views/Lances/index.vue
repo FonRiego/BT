@@ -66,6 +66,9 @@
 </template>
 
 <script>
+// utils
+import { cloneDeep } from 'lodash'
+
 // constants
 import { VIEWS_NAMES } from '../../constants/viewsNames'
 import { MECHS } from '../../constants/mechs'
@@ -100,10 +103,16 @@ export default {
     addToLance(lance) {
       if (lance === '1') {
         if (!this.mechSelected1 || this.lancesData.lance1.length > 3) return
-        this.lancesData.lance1.push(this.mechSelected1)
+        let mech1 = cloneDeep(this.mechSelected1)
+        mech1.lance = '1'
+        mech1.index = this.lancesData.lance1.length
+        this.lancesData.lance1.push(mech1)
       } else if (lance === '2') {
         if (!this.mechSelected2 || this.lancesData.lance2.length > 3) return
-        this.lancesData.lance2.push(this.mechSelected2)
+        let mech2 = cloneDeep(this.mechSelected2)
+        mech2.lance = '2'
+        mech2.index = this.lancesData.lance2.length
+        this.lancesData.lance2.push(mech2)
       }
     },
 

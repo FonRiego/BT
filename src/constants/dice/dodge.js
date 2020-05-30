@@ -2,6 +2,8 @@ export default {
   type: 'DODGE',
   color: 'green',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/dodge/1.png',

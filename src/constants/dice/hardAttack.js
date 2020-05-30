@@ -2,6 +2,8 @@ export default {
   type: 'HARD_ATTACK',
   color: 'red',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/hard/1.png',

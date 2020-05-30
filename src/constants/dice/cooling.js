@@ -2,6 +2,8 @@ export default {
   type: 'COOLING',
   color: 'blue',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/cooling/1.png',

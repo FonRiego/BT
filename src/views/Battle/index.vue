@@ -8,6 +8,7 @@
       Mech(
         :mech='mech'
         :active='isLance1Active'
+        :index='index'
       )
   
   .middle
@@ -26,6 +27,7 @@
       Mech(
         :mech='mech'
         :active='isLance2Active'
+        :index='index'
         reversed=true
       )
 </template>
@@ -38,7 +40,8 @@ import Mech from '../../components/Mech'
 import { 
   DICE_SELECTION,
   // ALL_PHASES,
-  COMBINED_PHASES
+  COMBINED_PHASES,
+  DICE_ROLLING
 } from '../../constants/battlePhases'
 
 // vuex
@@ -77,6 +80,9 @@ export default {
     isCombinedPhase() {
       return COMBINED_PHASES.includes(this.statePhase)
     },
+    isDiceSelectionPhase() {
+      return this.statePhase === DICE_SELECTION
+    }
   },
 
   components: { Mech },
@@ -114,7 +120,11 @@ export default {
       // this.rollDice()
     },
     diceSelectionFinished() {
-      console.log('dice selection finished', this.activeLance)
+      console.log('dice selection finished')
+      this.GET_PHASE(DICE_ROLLING)
+        .then((data) => {
+          console.log(data)
+        })
     },
     applyHeat() {
       
@@ -138,9 +148,6 @@ export default {
       } else if (this.activeLance === 2) {
         return this.stateLance2Name
       }
-    },
-    isDiceSelectionPhase() {
-      return this.statePhase === DICE_SELECTION
     }
   },
 

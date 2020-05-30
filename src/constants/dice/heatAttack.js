@@ -2,6 +2,8 @@ export default {
   type: 'HEAT_ATTACK',
   color: 'yellow',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/heat/1.png',

@@ -2,6 +2,8 @@ export default {
   type: 'SOFT_ATTACK',
   color: 'black',
   rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
       image:'/img/dice/soft/1.png',
