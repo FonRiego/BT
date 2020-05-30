@@ -1,6 +1,6 @@
 <template lang='pug'>
   .life-display
-    span {{ currentStructure }} / {{ maxStructure }}
+    span {{ currentStructure }} / {{ maxStructure }} --- H: {{ heat }}
 </template>
 
 <script>
@@ -13,6 +13,10 @@ export default {
       required: true
     },
     maxStructure: {
+      type: Number,
+      required: true
+    },
+    heat: {
       type: Number,
       required: true
     }

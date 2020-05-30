@@ -1,9 +1,10 @@
 export default {
   type: 'DODGE',
   color: 'green',
+  rolledFace: null,
   faces: [
     { 
-      image:'',
+      image:'/img/dice/dodge/1.png',
       damage: 0,
       tactic: 0,
       heat: 0,
@@ -11,7 +12,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/dodge/2.png',
       damage: 0,
       tactic: 1,
       heat: 0,
@@ -19,7 +20,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/dodge/3.png',
       damage: 0,
       tactic: 0,
       heat: 0,
@@ -27,7 +28,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/dodge/4.png',
       damage: 0,
       tactic: 1,
       heat: 0,
@@ -35,7 +36,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/dodge/4.png',
       damage: 0,
       tactic: 1,
       heat: 0,
@@ -43,7 +44,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/dodge/6.png',
       damage: 0,
       tactic: 0,
       heat: 0,

@@ -165,6 +165,7 @@ export default {
     background-color: red;
     color: white;
     height: 32px;
+    font-weight: bold;
     &.battle-button {
       align-self: center;
     }
