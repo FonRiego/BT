@@ -1,9 +1,12 @@
 export default {
   type: 'HEAT_ATTACK',
   color: 'yellow',
+  rolledFace: null,
+  willBeCooled: false,
+  willBeRolled: true,
   faces: [
     { 
-      image:'',
+      image:'/img/dice/heat/1.png',
       damage: 0,
       tactic: 0,
       heat: 0,
@@ -11,7 +14,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/heat/2.png',
       damage: 0,
       tactic: 0,
       heat: 1,
@@ -19,7 +22,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/heat/2.png',
       damage: 0,
       tactic: 0,
       heat: 1,
@@ -27,7 +30,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/heat/4.png',
       damage: 1,
       tactic: 0,
       heat: 1,
@@ -35,7 +38,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/heat/5.png',
       damage: 0,
       tactic: 0,
       heat: 2,
@@ -43,7 +46,7 @@ export default {
       cooling: 0
     },
     {
-      image:'',
+      image:'/img/dice/heat/6.png',
       damage: 1,
       tactic: 0,
       heat: 2,
