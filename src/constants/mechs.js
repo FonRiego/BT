@@ -21,7 +21,10 @@ export const LCT_1V = {
   optionalDice: [],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const WSP_1A = {
@@ -35,7 +38,10 @@ export const WSP_1A = {
   optionalDice: [],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const STG_3R = {
@@ -49,7 +55,10 @@ export const STG_3R = {
   optionalDice: [],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const COM_2D = {
@@ -63,7 +72,10 @@ export const COM_2D = {
   optionalDice: [SOFT_ATTACK],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const JVN_10N = {
@@ -77,7 +89,10 @@ export const JVN_10N = {
   optionalDice: [HARD_ATTACK],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const SDR_5V = {
@@ -91,7 +106,10 @@ export const SDR_5V = {
   optionalDice: [SOFT_ATTACK],
   traits: [TRAITS.FAULTY_EJECTION],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const UM_R60 = {
@@ -105,7 +123,10 @@ export const UM_R60 = {
   optionalDice: [],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const VLK_QA = {
@@ -119,7 +140,10 @@ export const VLK_QA = {
   optionalDice: [],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const FS9_H = {
@@ -133,7 +157,10 @@ export const FS9_H = {
   optionalDice: [SOFT_ATTACK, DODGE],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const JR7_D = {
@@ -146,7 +173,10 @@ export const JR7_D = {
   optionalDice: [DODGE, HARD_ATTACK],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const OTT_7J = {
@@ -160,7 +190,10 @@ export const OTT_7J = {
   optionalDice: [DODGE],
   traits: [],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 export const PNT_9R = {
@@ -174,7 +207,10 @@ export const PNT_9R = {
   optionalDice: [],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
-  index: null
+  index: null,
+  currentStructure: null,
+  heat: null,
+  destroyed: false
 }
 
 

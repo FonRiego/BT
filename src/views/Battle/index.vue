@@ -13,9 +13,16 @@
   
   .middle
     h1 {{ 'Turn ' + turn +  ' --- ' + statePhase + ' ' + lanceName() }}
+    //- dice selection button
     button(
       v-if='isDiceSelectionPhase'
-      @click='diceSelectionFinished()'
+      @click='diceSelectionFinished'
+    )
+      span Continue
+    //- dice rolling button
+    button(
+      v-if='isDiceRollingPhase'
+      @click='diceRollingFinished'
     )
       span Continue
 
@@ -41,7 +48,8 @@ import {
   DICE_SELECTION,
   // ALL_PHASES,
   COMBINED_PHASES,
-  DICE_ROLLING
+  DICE_ROLLING,
+  DICE_ALLOCATING
 } from '../../constants/battlePhases'
 
 // vuex
@@ -82,6 +90,9 @@ export default {
     },
     isDiceSelectionPhase() {
       return this.statePhase === DICE_SELECTION
+    },
+    isDiceRollingPhase() {
+      return this.statePhase === DICE_ROLLING
     }
   },
 
@@ -122,6 +133,13 @@ export default {
     diceSelectionFinished() {
       console.log('dice selection finished')
       this.GET_PHASE(DICE_ROLLING)
+        .then((data) => {
+          console.log(data)
+        })
+    },
+    diceRollingFinished() {
+      console.log('dice rolling finished')
+      this.GET_PHASE(DICE_ALLOCATING)
         .then((data) => {
           console.log(data)
         })

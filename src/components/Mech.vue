@@ -1,35 +1,35 @@
 <template lang='pug'>
   .mech(:class='classObject')
     img(
-      :src='mechData.imageSource'
+      :src='mech.imageSource'
       height='312'
       width='225'
     )
     life-display(
-      :maxStructure='mechData.maxStructure'
-      :currentStructure='currentStructure'
-      :heat='heat'
+      :maxStructure='mech.maxStructure'
+      :currentStructure='mech.currentStructure'
+      :heat='mech.heat'
     )
 
     .dice-container
       .base-dice
         Dice(
-          v-for='(dice, index) in mechData.baseDice'
+          v-for='(dice, index) in mech.baseDice'
           :key='index + "base"'
           :index='index'
-          :dice='dice'
+          :dice='mech.baseDice[index]'
           :active='active'
           @transformToCooling='ind => { transformCooledDice(ind) }'
         )
 
-      .separator(v-if='mechData.optionalDice.length > 0')
+      .separator(v-if='mech.optionalDice.length > 0')
 
       .optional-dice
         Dice(
-          v-for='(dice, index) in mechData.optionalDice'
+          v-for='(dice, index) in mech.optionalDice'
           :key='index + "optional"'
           :index='index'
-          :dice='dice'
+          :dice='mech.optionalDice[index]'
           isOptionalDice=true
           :active='active'
         )
@@ -37,9 +37,6 @@
 </template>
 
 <script>
-// Vue
-import Vue from 'vue'
-
 // utils
 import { cloneDeep } from 'lodash'
 
@@ -52,15 +49,7 @@ import Dice from './Dice'
 
 export default {
   name: 'Mech',
-  data() {
-    return {
-      mechData: cloneDeep(this.mech),
-      currentStructure: null,
-      heat: null,
-      destroyed: false
-    }
-  },
-
+ 
   props: {
     mech: {
       type: Object,
@@ -84,7 +73,7 @@ export default {
     classObject() {
       return {
         'reversed': this.reversed,
-        'destroyed': this.destroyed,
+        'destroyed': this.mech.destroyed,
         'active': this.active
       }
     }
@@ -94,18 +83,14 @@ export default {
 
   methods: {
     transformCooledDice(ind) {
-      console.log(ind)
-      console.log(this.mechData.baseDice)
       const newCoolingDice = cloneDeep(COOLING)
-      Vue.set(this.mechData.baseDice, ind, newCoolingDice)
-      // this.mechData.baseDice.splice(ind, 1, newCoolingDice)
-      console.log(this.mechData.baseDice)
+      this.mech.baseDice.splice(ind, 1, newCoolingDice)
     }
   },
 
   beforeMount() {
-    this.currentStructure = this.mechData.maxStructure
-    this.heat = 0
+    this.mech.currentStructure = this.mech.maxStructure
+    this.mech.heat = 0
   }
 }
 </script>

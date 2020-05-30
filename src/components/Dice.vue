@@ -89,10 +89,10 @@ export default {
       }
 
       if (this.statePhase === DICE_ROLLING) {
-        if (!this.willBeRolled) return
-        if (this.willBeCooled) {
+        if (!this.dataDice.willBeRolled) return
+        if (this.dataDice.willBeCooled) {
           this.transformCooledDice()
-        } else if (!this.rolledFace) {
+        } else if (!this.dataDice.rolledFace) {
           this.rollDice()
         }
       }      
@@ -105,8 +105,16 @@ export default {
 
     rollDice() {
       const faceIndex = Math.round(Math.random()*5)
-      this.rolledFace = this.dataDice.faces[faceIndex]
-      console.log(this.rolledFace)
+      this.dataDice.rolledFace = this.dataDice.faces[faceIndex]
+    }
+  },
+
+  watch: {
+    dice: {
+      deep: true,
+      handler() {
+        this.dataDice = cloneDeep(this.dice)
+      }
     }
   }
 }
