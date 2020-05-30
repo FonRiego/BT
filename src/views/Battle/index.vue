@@ -11,7 +11,7 @@
       )
   
   .middle
-    h1 {{ 'Turn ' + turn +  ' --- ' + phase + ' ' + lanceName() }}
+    h1 {{ 'Turn ' + turn +  ' --- ' + statePhase + ' ' + lanceName() }}
     button(
       v-if='isDiceSelectionPhase'
       @click='diceSelectionFinished()'
@@ -42,7 +42,8 @@ import {
 } from '../../constants/battlePhases'
 
 // vuex
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { GET_PHASE } from '../../store/types'
 
 
 export default {
@@ -55,7 +56,6 @@ export default {
         lance2: []
       },
       turn: null,
-      phase: null,
       activeLance: null
     }
   },
@@ -75,20 +75,28 @@ export default {
       return this.activeLance === 2 || this.activeLance === null
     },
     isCombinedPhase() {
-      return COMBINED_PHASES.includes(this.phase)
+      return COMBINED_PHASES.includes(this.statePhase)
     },
   },
 
   components: { Mech },
 
   methods: {
+    ...mapActions([GET_PHASE]),
+
     // Battle Summary
     startBattle() {
       this.turn = 1
       this.startTurn()
     },
     startTurn() {
-      this.startLanceTurn()
+      console.log(this.statePhase)
+      this.GET_PHASE(DICE_SELECTION)
+        .then((data) => {
+          console.log(data)
+        })
+      console.log(this.statePhase)
+      // this.startLanceTurn()
       // this.toogleLance()
       // this.startLanceTurn(this.activeLance)
       // this.checkFinal()
@@ -101,7 +109,7 @@ export default {
     // Lance Turn
     startLanceTurn() {
       console.log(this.activeLance)
-      this.phase = DICE_SELECTION
+    
       // this.applyHeat()
       // this.rollDice()
     },
@@ -132,7 +140,7 @@ export default {
       }
     },
     isDiceSelectionPhase() {
-      return this.phase === DICE_SELECTION
+      return this.statePhase === DICE_SELECTION
     }
   },
 

@@ -1,6 +1,6 @@
 <template lang='pug'>
   .dice(
-    :class='[dice.color, { disabled: !active }]'
+    :class='classArray'
     @click='diceClick(dice)'
   )
     img(
@@ -13,13 +13,23 @@
 </template>
 
 <script>
-// components
+// constants
+import { 
+  DICE_SELECTION,
+  DICE_ROLLING
+} from '../constants/battlePhases'
+
+// vuex
+import { mapState } from 'vuex'
+
 export default {
   name: 'Dice',
 
   data() {
     return {
-      rolledFace: null
+      rolledFace: null,
+      willBeRolled: true,
+      willBeCooled: false
     }
   },
 
@@ -38,16 +48,50 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      statePhase: 'phase'
+    }),
+    classArray() {
+      return [
+        this.dice.color,
+        {
+          'disabled': !this.active,
+          'discarded': !this.willBeRolled,
+          'cooled': this.willBeCooled
+        }
+      ]
+    }
+  },
+
   methods: {
+    toogleWillBeRolled() {
+      this.willBeRolled ? this.willBeRolled = false : this.willBeRolled = true
+    },
+
+    toogleWillBeCooled() {
+      this.willBeCooled ? this.willBeCooled = false : this.willBeCooled = true
+    },
+
     diceClick(dice) {
       console.log(dice, this.rolledFace, this.isOptionalDice)
 
-      if (!this.rolledFace) {
-        this.rollDice()
-      } else if (this.rolledFace) {
-        this.$emit('rolledFace', this.rolledFace)
+      if (this.statePhase === DICE_SELECTION) {
+        if (this.isOptionalDice) {
+          this.toogleWillBeRolled()
+        } else if (!this.isOptionalDice) {
+          this.toogleWillBeCooled()
+        }
       }
+
+      if (this.statePhase === DICE_ROLLING) {
+        if (!this.rolledFace) {
+          this.rollDice()
+        }
+      }      
+      // this.$emit('rolledFace', this.rolledFace)
     },
+
     rollDice() {
       const faceIndex = Math.round(Math.random()*5)
       this.rolledFace = this.dice.faces[faceIndex]
@@ -124,6 +168,44 @@ export default {
   &.disabled {
     background-color: rgba(blue, 0.2);
     pointer-events: none;
+  }
+}
+.cooled {
+  position: relative;
+  background-color: blue;
+  &:before, &:after {
+    position: absolute;
+    left: 16px;
+    content: ' ';
+    height: 32px;
+    width: 4px;
+    background-color: rgb(0, 175, 255);
+  }
+  &:before {
+    transform: rotate(90deg);
+    bottom: 8px;
+  }
+  &:after {
+    transform: rotate(90deg);
+    top: 8px;
+  }
+}
+.discarded {
+  position: relative;
+
+  &:before, &:after {
+    position: absolute;
+    left: 16px;
+    content: ' ';
+    height: 36px;
+    width: 4px;
+    background-color: rgb(66, 65, 66);
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
   }
 }
 </style>
