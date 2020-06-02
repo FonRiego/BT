@@ -17,7 +17,7 @@
           v-for='(dice, index) in mech.baseDice'
           :key='index + "base"'
           :index='index'
-          :dice='mech.baseDice[index]'
+          :dice='dice'
           :active='active'
           @transformToCooling='ind => { transformCooledDice(ind) }'
         )
@@ -29,9 +29,11 @@
           v-for='(dice, index) in mech.optionalDice'
           :key='index + "optional"'
           :index='index'
-          :dice='mech.optionalDice[index]'
+          :dice='dice'
           isOptionalDice=true
           :active='active'
+          @input='v => { $emit("input", v) }'
+          @toogleRolled='v => handleToogleRolled(v, index)'
         )
 
 </template>
@@ -85,12 +87,18 @@ export default {
     transformCooledDice(ind) {
       const newCoolingDice = cloneDeep(COOLING)
       this.mech.baseDice.splice(ind, 1, newCoolingDice)
+    },
+    handleToogleRolled(v, index) {
+      console.log(v, index)
+      this.$emit("toogleRolled", { willBeRolled: v, diceIndex: index })
     }
   },
 
   beforeMount() {
     this.mech.currentStructure = this.mech.maxStructure
-    this.mech.heat = 0
+    if (!this.mech.heat) {
+      this.mech.heat = 0
+    }
   }
 }
 </script>
@@ -114,7 +122,6 @@ export default {
   .dice-container {
     width: 100%;
     display: flex;
-    padding: 8px 0;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;

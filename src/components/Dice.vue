@@ -72,6 +72,7 @@ export default {
   methods: {
     toogleWillBeRolled() {
       this.dataDice.willBeRolled ? this.dataDice.willBeRolled = false : this.dataDice.willBeRolled = true
+      this.$emit('toogleRolled', this.dataDice.willBeRolled)
     },
 
     toogleWillBeCooled() {

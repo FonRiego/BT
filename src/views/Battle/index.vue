@@ -1,6 +1,6 @@
 <template lang='pug'>
 #battle
-  .lance1
+  .lance1(:class='{ "disabled": !isLance1Active }')
     .mech-container(
       v-for='(mech, index) in lancesData.lance1'
       :key='index'
@@ -9,6 +9,7 @@
         :mech='mech'
         :active='isLance1Active'
         :index='index'
+        @toogleRolled='(obj) => handleToogleRolled({ ...obj, lance: "lance1", mechIndex: index})'
       )
   
   .middle
@@ -21,12 +22,12 @@
       span Continue
     //- dice rolling button
     button(
-      v-if='isDiceRollingPhase'
-      @click='diceRollingFinished'
+      v-if='isDiceAllocatingPhase'
+      @click='diceAllocatingFinished'
     )
       span Continue
 
-  .lance2
+  .lance2(:class='{ "disabled": !isLance2Active }')
     .mech-container(
       v-for='(mech, index) in lancesData.lance2'
       :key='index'
@@ -36,14 +37,19 @@
         :active='isLance2Active'
         :index='index'
         reversed=true
+        @toogleRolled='(obj) => handleToogleRolled({ ...obj, lance: "lance2", mechIndex: index})'
       )
 </template>
 
 <script>
+// Vue
+// import Vue from 'vue'
+
 // components
 import Mech from '../../components/Mech'
 
 // constants
+import { VIEWS_NAMES } from '../../constants/viewsNames'
 import { 
   DICE_SELECTION,
   // ALL_PHASES,
@@ -93,6 +99,9 @@ export default {
     },
     isDiceRollingPhase() {
       return this.statePhase === DICE_ROLLING
+    },
+    isDiceAllocatingPhase() {
+      return this.statePhase === DICE_ALLOCATING
     }
   },
 
@@ -125,28 +134,32 @@ export default {
 
     // Lance Turn
     startLanceTurn() {
-      console.log(this.activeLance)
+      this.toogleLance()
+      this.GET_PHASE(DICE_ALLOCATING)
     
-      // this.applyHeat()
       // this.rollDice()
     },
-    diceSelectionFinished() {
-      console.log('dice selection finished')
+    async diceSelectionFinished() {
       this.GET_PHASE(DICE_ROLLING)
-        .then((data) => {
-          console.log(data)
-        })
-    },
-    diceRollingFinished() {
-      console.log('dice rolling finished')
-      this.GET_PHASE(DICE_ALLOCATING)
-        .then((data) => {
-          console.log(data)
-        })
-    },
-    applyHeat() {
       
+      await this.applyHeatLance(this.lancesData.lance1)
+      await this.applyHeatLance(this.lancesData.lance2)
+      await this.clickCooled()   
+      await this.clickAllDice()
+
+      this.startLanceTurn()
     },
+    diceAllocatingFinished() {
+      console.log('dice allocating finished')
+    },
+
+    applyHeatLance(lance) {
+      lance.forEach(mech => this.applyHeatMech(mech))
+    },
+    applyHeatMech(mech) {
+      console.log(mech)
+    },
+    // to roll just one dice
     rollDice() {
 
     },
@@ -166,6 +179,29 @@ export default {
       } else if (this.activeLance === 2) {
         return this.stateLance2Name
       }
+    },
+    gainHeat() {
+
+    },
+    clickCooled() {
+      document.getElementsByClassName('cooled').forEach(cooledDice => {
+        cooledDice.click()
+      })
+    },
+
+    clickAllDice() {
+      document.getElementsByClassName('dice').forEach(cooledDice => {
+        cooledDice.click()
+      })
+    },
+    /**
+     * This handler receives indexes of mech and optional dice and the value of
+     * willBeRolled and will set that property in the mech object inside lance.
+     */
+    handleToogleRolled(object) {
+      console.log(object)
+      // console.log(this.lancesData[lance][mechIndex])
+      // Vue.set(this.lancesData[lance][mechIndex].optionalDice[diceIndex], 'willBeRolled', willBeRolled)
     }
   },
 
@@ -173,35 +209,51 @@ export default {
     this.lancesData.lance1 = this.stateLance1
     this.lancesData.lance2 = this.stateLance2
     this.startBattle()
+  },
+
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.stateLance1.length === 0 || vm.stateLance2.length === 0) {
+        vm.$router.push({ name: VIEWS_NAMES.LANCES_VIEW })
+      }
+    })
   }
 }
 </script>
 
 <style lang='scss'>
 #battle {
-  padding: 16px;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
   .lance1, .lance2 {
-     display: flex;
-     justify-content: center;
-      & .mech-container {
-        margin-left: 36px;
-      }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(green, 0.1);
+    height: calc((100% - 40px) / 2);
+    & .mech-container {
+      margin-left: 36px;
+    }
+    &.disabled {
+      background-color: rgba(red, 0.1);
+    }
+
   }
   .middle {
     position: relative;
     h1 {
-      font-size: 40px;
-      line-height: 48px;
+      font-size: 32px;
+      line-height: 40px;
       text-align: center;
-      padding: 16px;
-      color: green;
-      background-color: rgba(green, 0.1)
+      color: blue;
+      background-color: rgba(blue, 0.1)
     }
     button {
       height: 32px;
       width: 144px;
       position: absolute;
-      top: 24px;
+      top: 4px;
       right: 24px;
       border-radius: 3px;
       background-color: red;
