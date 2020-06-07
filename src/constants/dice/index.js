@@ -13,3 +13,12 @@ export {
   COMMAND,
   COOLING
 }
+
+export default {
+  HARD_ATTACK,
+  SOFT_ATTACK,
+  HEAT_ATTACK,
+  DODGE,
+  COMMAND,
+  COOLING
+}
