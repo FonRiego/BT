@@ -1,14 +1,39 @@
 import {
-  HARD_ATTACK,
   SOFT_ATTACK,
+  HARD_ATTACK,
   HEAT_ATTACK,
-  DODGE
-  // COOLING
-} from './dice'
+  DODGE,
+  COMMAND
+} from './diceNames'
 
 import {
   TRAITS
 } from './traits'
+
+export const PP_1 = {
+  name: 'Pepe',
+  model: 'PP_1',
+  fullName: 'Pepe-1',
+  imageSource: '/img/mechs/1_LOCUST.jpg',
+  tons: 20,
+  maxStructure: 6,
+  currentStructure: 6,
+  originalBaseDice: [HARD_ATTACK, SOFT_ATTACK, HEAT_ATTACK],
+  baseDice: [HARD_ATTACK, SOFT_ATTACK, HEAT_ATTACK],
+  originalOptionalDice: [DODGE, COMMAND],
+  optionalDice: [DODGE, COMMAND],
+  traits: [],
+  lance: null,
+  index: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
+  destroyed: false
+}
 
 export const LCT_1V = {
   name: 'Locust',
@@ -17,13 +42,21 @@ export const LCT_1V = {
   imageSource: '/img/mechs/1_LOCUST.jpg',
   tons: 20,
   maxStructure: 6,
+  currentStructure: 6,
+  originalBaseDice: [SOFT_ATTACK, DODGE, DODGE],
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -34,13 +67,21 @@ export const WSP_1A = {
   imageSource: '/img/mechs/2_WASP.jpg',
   tons: 20,
   maxStructure: 5,
+  currentStructure: 5,
+  originalBaseDice: [SOFT_ATTACK, DODGE, DODGE],
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -51,13 +92,21 @@ export const STG_3R = {
   imageSource: '/img/mechs/3_STINGER.jpg',
   tons: 20,
   maxStructure: 5,
+  currentStructure: 5,
+  originalBaseDice: [SOFT_ATTACK, DODGE, DODGE],
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -68,13 +117,21 @@ export const COM_2D = {
   imageSource: '/img/mechs/4_COMMANDO.jpg',
   tons: 25,
   maxStructure: 7,
+  currentStructure: 7,
+  originalBaseDice: [SOFT_ATTACK, DODGE],
   baseDice: [SOFT_ATTACK, DODGE],
+  originalOptionalDice: [SOFT_ATTACK],
   optionalDice: [SOFT_ATTACK],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -85,13 +142,21 @@ export const JVN_10N = {
   imageSource: '/img/mechs/5_JAVELIN.jpg',
   tons: 30,
   maxStructure: 8,
+  currentStructure: 8,
+  originalBaseDice: [DODGE, DODGE],
   baseDice: [DODGE, DODGE],
+  originalOptionalDice: [HARD_ATTACK],
   optionalDice: [HARD_ATTACK],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -102,13 +167,21 @@ export const SDR_5V = {
   imageSource: '/img/mechs/6_SPIDER.jpg',
   tons: 30,
   maxStructure: 7,
+  currentStructure: 7,
+  originalBaseDice: [SOFT_ATTACK, DODGE, DODGE],
   baseDice: [SOFT_ATTACK, DODGE, DODGE],
+  originalOptionalDice: [SOFT_ATTACK],
   optionalDice: [SOFT_ATTACK],
   traits: [TRAITS.FAULTY_EJECTION],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -119,13 +192,21 @@ export const UM_R60 = {
   imageSource: '/img/mechs/7_URBANMECH.jpg',
   tons: 30,
   maxStructure: 10,
+  currentStructure: 10,
+  originalBaseDice: [HARD_ATTACK],
   baseDice: [HARD_ATTACK],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -136,13 +217,21 @@ export const VLK_QA = {
   imageSource: '/img/mechs/8_VALKYRIE.jpg',
   tons: 30,
   maxStructure: 10,
+  currentStructure: 10,
+  originalBaseDice: [SOFT_ATTACK, SOFT_ATTACK, DODGE],
   baseDice: [SOFT_ATTACK, SOFT_ATTACK, DODGE],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -153,29 +242,46 @@ export const FS9_H = {
   imageSource: '/img/mechs/9_FIRESTARTER.jpg',
   tons: 35,
   maxStructure: 10,
+  currentStructure: 10,
+  originalBaseDice: [HEAT_ATTACK, HEAT_ATTACK],
   baseDice: [HEAT_ATTACK, HEAT_ATTACK],
+  originalOptionalDice: [SOFT_ATTACK, DODGE],
   optionalDice: [SOFT_ATTACK, DODGE],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
 export const JR7_D = {
   name: 'Jenner',
+  model: 'JR7_D',
   fullName: 'Jenner-7-D',
   imageSource: '/img/mechs/10_JENNER.jpg',
   tons: 35,
   maxStructure: 8,
+  currentStructure: 8,
+  originalBaseDice: [SOFT_ATTACK, DODGE],
   baseDice: [SOFT_ATTACK, DODGE],
+  originalOptionalDice: [DODGE, HARD_ATTACK],
   optionalDice: [DODGE, HARD_ATTACK],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -186,13 +292,21 @@ export const OTT_7J = {
   imageSource: '/img/mechs/11_OSTSCOUT.jpg',
   tons: 35,
   maxStructure: 9,
+  currentStructure: 9,
+  originalBaseDice: [SOFT_ATTACK, DODGE],
   baseDice: [SOFT_ATTACK, DODGE],
+  originalOptionalDice: [DODGE],
   optionalDice: [DODGE],
   traits: [],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
@@ -203,19 +317,28 @@ export const PNT_9R = {
   imageSource: '/img/mechs/12_PANTHER.jpg',
   tons: 35,
   maxStructure: 11,
+  currentStructure: 11,
+  originalBaseDice: [HARD_ATTACK, DODGE],
   baseDice: [HARD_ATTACK, DODGE],
+  originalOptionalDice: [],
   optionalDice: [],
   traits: [TRAITS.URBAN_COMBAT],
   lance: null,
   index: null,
-  currentStructure: null,
-  heat: null,
+  heat: 0,
+  dodge: 0,
+  assignedTargets: [],
+  damageAimed: 0,
+  heatAimed: 0,
+  targets: 1,
+  originalTargets: 1,
   destroyed: false
 }
 
 
 // mechs
-export const MECHS = [
+export const MECHS = {
+  PP_1,
   LCT_1V,
   WSP_1A,
   STG_3R,
@@ -228,4 +351,4 @@ export const MECHS = [
   JR7_D,
   OTT_7J,
   PNT_9R
-]
+}

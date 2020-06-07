@@ -4,6 +4,8 @@ export default {
   rolledFace: null,
   willBeCooled: false,
   willBeRolled: true,
+  used: false,
+  selected: false,
   faces: [
     { 
       image:'/img/dice/cooling/1.png',

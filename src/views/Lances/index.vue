@@ -4,7 +4,7 @@
       .selection-box
         label Lance 1 name
         input(
-          v-model='lancesData.lance1Name'
+          v-model='lance1.name'
         )
         select(
           v-model='mechSelected1'
@@ -20,7 +20,7 @@
           span Add to Lance 1
       .selection-display
         div(
-          v-for='(mech, index) in lancesData.lance1'
+          v-for='(mech, index) in lance1.mechs'
           :key='index'
         )
           img(
@@ -33,7 +33,7 @@
       .selection-box
         label Lance 2 name
         input(
-          v-model='lancesData.lance2Name'
+          v-model='lance2.name'
         )
         select(
           v-model='mechSelected2'
@@ -49,7 +49,7 @@
           span Add to Lance 2
       .selection-display
         div(
-          v-for='(mech, index) in lancesData.lance2'
+          v-for='(mech, index) in lance2.mechs'
           :key='index'
         )
           img(
@@ -68,6 +68,8 @@
 <script>
 // utils
 import { cloneDeep } from 'lodash'
+import generateUniqueId from '../../utils/generateUniqueId'
+import createDiceArray from '../../utils/createDiceArray'
 
 // constants
 import { VIEWS_NAMES } from '../../constants/viewsNames'
@@ -82,11 +84,16 @@ export default {
 
    data() {
     return {
-      lancesData: {
-        lance1Name: 'Lance 1',
-        lance2Name: 'Lance 2',
-        lance1: [],
-        lance2: []
+      lances: [],
+      lance1: {
+        lance: 1,
+        name: 'Lance 1',
+        mechs: []
+      },
+      lance2: {
+        lance: 2,
+        name: 'Lance 2',
+        mechs: []
       },
       mechsData: MECHS,
       mechSelected1: '',
@@ -102,22 +109,31 @@ export default {
 
     addToLance(lance) {
       if (lance === '1') {
-        if (!this.mechSelected1 || this.lancesData.lance1.length > 3) return
+        if (!this.mechSelected1 || this.lance1.mechs.length > 3) return
         let mech1 = cloneDeep(this.mechSelected1)
-        mech1.lance = '1'
-        mech1.index = this.lancesData.lance1.length
-        this.lancesData.lance1.push(mech1)
+        mech1.lance = 1
+        mech1.index = this.lance1.mechs.length
+        mech1.id = generateUniqueId('mech')
+        mech1.baseDice = createDiceArray(mech1.originalBaseDice)
+        mech1.optionalDice = createDiceArray(mech1.originalOptionalDice)
+        this.lance1.mechs.push(mech1)
       } else if (lance === '2') {
-        if (!this.mechSelected2 || this.lancesData.lance2.length > 3) return
+        if (!this.mechSelected2 || this.lance2.mechs.length > 3) return
         let mech2 = cloneDeep(this.mechSelected2)
-        mech2.lance = '2'
-        mech2.index = this.lancesData.lance2.length
-        this.lancesData.lance2.push(mech2)
+        mech2.lance = 2
+        mech2.index = this.lance2.mechs.length
+        mech2.id = generateUniqueId('mech')
+        mech2.baseDice = createDiceArray(mech2.originalBaseDice)
+        mech2.optionalDice = createDiceArray(mech2.originalOptionalDice)
+        this.lance2.mechs.push(mech2)
       }
     },
 
     gotoBattle() {
-      this.GET_LANCES(this.lancesData)
+      this.lances.push(this.lance1)
+      this.lances.push(this.lance2)
+      console.log(this.lances)
+      this.GET_LANCES(this.lances)
         .then(() => {
           this.$router.push({ name: VIEWS_NAMES.BATTLE_VIEW })
         })
