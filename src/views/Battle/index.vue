@@ -190,6 +190,7 @@
 import { cloneDeep } from 'lodash'
 import generateUniqueId from '../../utils/generateUniqueId'
 import createDiceArray from '../../utils/createDiceArray'
+import dateToString from '../../utils/dateToString'
 
 // constants
 import { VIEWS_NAMES } from '../../constants/viewsNames'
@@ -484,8 +485,66 @@ export default {
     },
 
     endBattle() {
+      let lance1 = {
+        tons: 0,
+        mechs: []
+      }
+      this.lances[0].mechs.forEach(mech => {
+        let mechStatus = {
+          name: mech.fullName,
+          tons: mech.tons,
+          status: `H: ${mech.heat}---St: ${mech.currentStructure}/${mech.maxStructure}---Destroyed: ${mech.destroyed}`
+        }
+        lance1.tons += mech.tons
+        lance1.mechs.push(mechStatus)
+      })
+
+      let lance2 = {
+        tons: 0,
+        mechs: []
+      }
+      this.lances[1].mechs.forEach(mech => {
+        let mechStatus = {
+          name: mech.fullName,
+          tons: mech.tons,
+          status: `H: ${mech.heat}---St: ${mech.currentStructure}/${mech.maxStructure}---Destroyed: ${mech.destroyed}`
+        }
+        lance2.tons += mech.tons
+        lance2.mechs.push(mechStatus)
+      })
+
+      let battle = {
+        lance1,
+        victoriousLance: this.victoriousLance,
+        lance2
+      }
+
+      let blob = new Blob([JSON.stringify(battle, null, 2)],{type: 'text/plain'});
+      let fileName = `battle_${dateToString(Date.now())}`
+			this.downloadBattle(blob, fileName)
+       
       this.$router.push({ name: VIEWS_NAMES.LANCES_VIEW })
     },
+
+    downloadBattle(blob,name) {
+      let url = URL.createObjectURL(blob)
+      let div = document.createElement("div")
+      let anch = document.createElement("a")
+
+      document.body.appendChild(div);
+      div.appendChild(anch);
+
+      anch.innerHTML = "&nbsp;";
+      div.style.width = "0";
+      div.style.height = "0";
+      anch.href = url;
+      anch.download = name;
+      
+      let ev = new MouseEvent("click",{});
+      anch.dispatchEvent(ev);
+      document.body.removeChild(div);
+    },
+    
 
     // dice click
     diceClick(dice, optional, index, array, mech) {
