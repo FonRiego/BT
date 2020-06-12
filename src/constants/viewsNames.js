@@ -1,0 +1,4 @@
+export const VIEWS_NAMES = {
+  LANCES_VIEW: 'LANCES_VIEW',
+  BATTLE_VIEW: 'BATTLE_VIEW'
+}

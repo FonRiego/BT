@@ -1,0 +1,6 @@
+export const SOFT_ATTACK = 'SOFT_ATTACK'
+export const HARD_ATTACK = 'HARD_ATTACK'
+export const HEAT_ATTACK = 'HEAT_ATTACK'
+export const DODGE = 'DODGE'
+export const COMMAND = 'COMMAND'
+export const COOLING = 'COOLING'
